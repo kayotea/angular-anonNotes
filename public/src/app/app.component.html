@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+  <head></head>
+  <body>
+    <div id="wrapper">
+      <h2>Anonymous Notes</h2>
+      <form #noteform="ngForm" (submit)="addNote()">
+        <label for="note">Note:</label>
+        <input type="text" name="note" [(ngModel)]="note.note" required>
+        <input type="submit" value="Add Note" [disabled]="!noteform.form.valid">
+      </form>
+      <div id="notebox">
+        <div *ngFor="let quote of notes" class="anon">
+          <p class="date">{{quote.created | date:'medium'}}</p>
+          <p>{{quote.note}}</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
