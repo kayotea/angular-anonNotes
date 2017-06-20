@@ -9,7 +9,7 @@
 }
 #notebox{
     width: 100%;
-    height: 600px;
+    height: 300px;
     overflow: scroll;
 }
 .anon {
@@ -18,11 +18,16 @@
     border-radius: 5px;
     margin: 3px;
 }
-p, input, label{
-    margin: 5px;
+input, label{
+    margin: 5px 5px 20px 20px;
+}
+h2{
+    margin: 20px;
+    color: black;
 }
 p {
     display: inline-block;
+    margin: 5px;
 }
 .date {
     float: right;

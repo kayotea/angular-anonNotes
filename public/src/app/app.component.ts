@@ -13,6 +13,10 @@ export class AppComponent implements OnInit{//
   notes = [];
 
   ngOnInit() {
+    this.getNotes();
+  }
+
+  getNotes(){
     this._noteService.retrieveNotes()
     .then(notes => {this.notes = notes; console.log('notes retrived', this.notes);})
     .catch(error => {console.log("error in app.component.ts/ngOnInit")})
@@ -21,8 +25,12 @@ export class AppComponent implements OnInit{//
   addNote(){
     this.note.created = new Date;
     this._noteService.writeNote(this.note)
-    .then(note => {console.log('note added');})
+    .then(note => {
+      console.log('note added');
+      this.getNotes();
+    })
     .catch(error => {console.log('error in app.component.ts/addNote()')})
+    this.note = new Note();
   }
 }
 

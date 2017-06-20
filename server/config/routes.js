@@ -14,6 +14,10 @@ module.exports = function(app){
     app.post('/newnote', function (req, res) {
         quotes.createNote(req, res);
     });
+    //same as
+    // app.post('/newnote', (req, res) => {
+    //     quotes.createNote(req, res);
+    // });
     app.get('/notes', function (req, res) {
         quotes.index(req, res);
     });

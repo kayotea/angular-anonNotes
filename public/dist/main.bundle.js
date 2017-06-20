@@ -21,7 +21,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "*{\n    margin: 0px;\n}\n#wrapper {\n    font-family: \"Helvetica Neue\", Arial, sans-serif;\n    background-color: lightblue;\n    margin: 0px auto;\n    padding: 10px;\n}\n#notebox{\n    width: 100%;\n    height: 600px;\n    overflow: scroll;\n}\n.anon {\n    background-color: white;\n    padding: 10px;\n    border-radius: 5px;\n    margin: 3px;\n}\np, input, label{\n    margin: 5px;\n}\np {\n    display: inline-block;\n}\n.date {\n    float: right;\n    font-size: 80%;\n}\n", ""]);
+exports.push([module.i, "*{\n    margin: 0px;\n}\n#wrapper {\n    font-family: \"Helvetica Neue\", Arial, sans-serif;\n    background-color: lightblue;\n    margin: 0px auto;\n    padding: 10px;\n}\n#notebox{\n    width: 100%;\n    height: 300px;\n    overflow: scroll;\n}\n.anon {\n    background-color: white;\n    padding: 10px;\n    border-radius: 5px;\n    margin: 3px;\n}\ninput, label{\n    margin: 5px 5px 20px 20px;\n}\nh2{\n    margin: 20px;\n    color: black;\n}\np {\n    display: inline-block;\n    margin: 5px;\n}\n.date {\n    float: right;\n    font-size: 80%;\n}\n", ""]);
 
 // exports
 
@@ -63,16 +63,24 @@ var AppComponent = (function () {
         this.notes = [];
     } //
     AppComponent.prototype.ngOnInit = function () {
+        this.getNotes();
+    };
+    AppComponent.prototype.getNotes = function () {
         var _this = this;
         this._noteService.retrieveNotes()
             .then(function (notes) { _this.notes = notes; console.log('notes retrived', _this.notes); })
             .catch(function (error) { console.log("error in app.component.ts/ngOnInit"); });
     };
     AppComponent.prototype.addNote = function () {
+        var _this = this;
         this.note.created = new Date;
         this._noteService.writeNote(this.note)
-            .then(function (note) { console.log('note added'); })
+            .then(function (note) {
+            console.log('note added');
+            _this.getNotes();
+        })
             .catch(function (error) { console.log('error in app.component.ts/addNote()'); });
+        this.note = new Note();
     };
     return AppComponent;
 }());
